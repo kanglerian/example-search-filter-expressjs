@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search App</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+  <div class="container p-5">
+    <header class="mb-5">
+      <h3 class="font-bold text-2xl"><a href="/">Search App</a></h3>
+      <p class="text-sm text-gray-500">A simple application explain about how to use search and feature filter in ExpressJS.</p>
+    </header>
+    <section style="margin-bottom: 12px;">
+      <form action="/" method="post">
+        <input type="search" name="search" class="shadow border border-gray-100 rounded w-52 text-sm py-2 px-3 text-gray-700" placeholder="Search name in here...">
+        <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white text-sm font-bold py-2 px-4 rounded"><i class="fa-solid fa-magnifying-glass"></i> Cari!</button>
+      </form>
+      <form action="/filter" method="post" style="margin-top: 10px;">
+        <input type="search" name="address" class="shadow border border-gray-100 rounded w-52 text-sm py-2 px-3 text-gray-700" placeholder="Search address in here...">
+        <select name="status" class="shadow border border-gray-100 rounded w-40 text-sm py-2 px-3 text-gray-700">
+          <option value="all">Semua</option>
+          <option value="1">true</option>
+          <option value="0">false</option>
+        </select>
+        <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white text-sm font-bold py-2 px-4 rounded"><i class="fa-solid fa-filter"></i> Filter</button>
+      </form>
+    </section>
+    <section class="my-4">
+      <h4 class="bg-green-600 px-2 py-2 inline rounded text-white text-sm">Count: <span class="font-bold"><%= schools.length %></span></h4>
+    </section>
+    <table class="w-full text-sm text-left text-gray-500">
+      <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+        <tr>
+          <th scope="col" class="px-6 py-3">No</th>
+          <th scope="col" class="px-6 py-3">Name</th>
+          <th scope="col" class="px-6 py-3">Teacher</th>
+          <th scope="col" class="px-6 py-3">Address</th>
+          <th scope="col" class="px-6 py-3">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if(schools.length > 0){ %>
+        <% schools.forEach((school, index) => { %>
+        <tr class="bg-white">
+          <td scope="row" class="px-6 py-4 font-medium text-gray-900"><%= index + 1 %></td>
+          <td scope="row" class="px-6 py-4 font-medium text-gray-900"><%= school.name %></td>
+          <td scope="row" class="px-6 py-4"><%= school.teacher %></td>
+          <td scope="row" class="px-6 py-4"><%= school.address %></td>
+          <td scope="row" class="px-6 py-4"><%= school.status %></td>
+        </tr>
+        <% }) %>
+        <% } else { %>
+        <tr class="bg-white">
+          <td colspan="5" class="px-6 py-4 text-center">Data not found</td>
+        </tr>
+        <% } %>
+      </tbody>
+    </table>
+    <footer class="mt-10">
+      <p class="text-xs text-gray-500">Copyright @kanglerian 2023</p>
+    </footer>
+  </div>
+</body>
+
+</html>
